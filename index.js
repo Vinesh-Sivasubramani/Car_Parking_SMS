@@ -25,6 +25,12 @@ app.get("/",(req,res)=>{
     res.sendStatus(200);
 })
 
+
+app.get("/api/v1/allData",async(req,res)=>{
+    const allSlotStatus = await slots.find();
+    res.json(allSlotStatus)
+})
+
 app.post("/api/v1/query",async(req,res)=>{
     const {slot_status,slot_no}=req.query;
    
@@ -42,5 +48,5 @@ app.post("/api/v1/query",async(req,res)=>{
 
 
 app.listen(process.env.PORT||5000,()=>{
-    console.log("listening.........");
+    console.log("Listing🚗🚗🚗");
 })
