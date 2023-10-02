@@ -33,7 +33,7 @@ app.post("/api/v1/query",async(req,res)=>{
     if(!slot){
         return res.sendStatus(404);
     }
-
+    console.log(slot_status,slot_no);
     slot.slot_status=Number(slot_status);
     await slot.save()
     return res.sendStatus(200);
