@@ -25,6 +25,10 @@ app.get("/",(req,res)=>{
     res.sendStatus(200);
 })
 
+app.post("/",(req,res)=>{
+    res.status(200).json(req.body);
+})
+
 
 app.get("/api/v1/allData",async(req,res)=>{
     const allSlotStatus = await slots.find();
@@ -43,7 +47,7 @@ app.post("/api/v1/query",async(req,res)=>{
     slot.slot_status=Number(slot_status);
 
     //DATE
-    const date = new Date();
+const date = new Date();
 
 const options = {
   timeZone: 'Asia/Kolkata',
