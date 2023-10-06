@@ -25,7 +25,7 @@ app.get("/",(req,res)=>{
     res.sendStatus(200);
 })
 
-app.post("/",(req,res)=>{
+app.post("/getData",(req,res)=>{
     console.log(req.body);
     res.status(200).json(req.body);
 })
