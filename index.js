@@ -41,8 +41,23 @@ app.post("/api/v1/query",async(req,res)=>{
     }
     console.log(slot_status,slot_no);
     slot.slot_status=Number(slot_status);
-    const d = new Date();
-    slot.updatedAt=d;
+
+    //DATE
+    const date = new Date();
+
+const options = {
+  timeZone: 'Asia/Kolkata',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+};
+
+const formattedDate = new Intl.DateTimeFormat('en-IN', options).format(date);
+
+    slot.updatedAt=formattedDate;
     await slot.save()
     return res.sendStatus(200);
 
