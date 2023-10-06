@@ -41,6 +41,8 @@ app.post("/api/v1/query",async(req,res)=>{
     }
     console.log(slot_status,slot_no);
     slot.slot_status=Number(slot_status);
+    const d = new Date();
+    slot.updatedAt=d;
     await slot.save()
     return res.sendStatus(200);
 
