@@ -25,11 +25,29 @@ app.get("/",(req,res)=>{
     res.sendStatus(200);
 })
 
-app.post("/getData",(req,res)=>{
-    var data = req.body.uplink_message.decoded_payload.Slot0;
-    console.log("Slot 0:",data);
-    res.status(200).json(data);
-})
+app.post("/getData", async(req, res) => {
+    try {
+        const data = req.body.uplink_message.decoded_payload;
+        const {slot_no,slot_status}=data;
+        console.log(slot_no,slot_status);
+
+        const slot = await slots.findOne({slot_no:Number(slot_no)});
+        if(!slot){
+            return res.sendStatus(404);
+        }
+
+        slot.slot_status=Number(slot_status);
+        const date = new Date();
+        slot.updatedAt=date;
+        await slot.save()
+        res.status(200).json(data);
+    } 
+    catch (error) 
+    {
+        console.error("Error parsing JSON data:", error);
+        res.status(400).json({ error: "Invalid JSON data" });
+    }
+});
 
 
 app.get("/api/v1/allData",async(req,res)=>{
