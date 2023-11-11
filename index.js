@@ -4,6 +4,10 @@ const mongoose= require("mongoose");
 require("dotenv").config();
 app.use(express.json())
 
+const cors = require("cors");
+app.use(cors({
+    origin:"*"
+}))
 
 const slots= require("./Slots");
 
@@ -89,5 +93,5 @@ const formattedDate = new Intl.DateTimeFormat('en-IN', options).format(date);
 
 
 app.listen(process.env.PORT||5000,()=>{
-    console.log("Listing🚗🚗🚗");
+    console.log("Listening🚗🚗🚗");
 })
