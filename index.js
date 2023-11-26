@@ -29,7 +29,7 @@ app.post("/getData", async (req, res) => {
     try {
         const data = req.body.uplink_message.decoded_payload;
         const { slot_no, slot_status } = data;
-        console.log(slot_no, slot_status);
+        console.log(`Slot_no: ${slot_no} Slot_status: ${slot_status}`);
 
         const slot = await slots.findOne({ slot_no: Number(slot_no) });
         if (!slot) {
